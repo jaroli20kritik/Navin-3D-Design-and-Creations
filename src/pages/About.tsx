@@ -8,7 +8,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 
 const services = [
   { icon: PenTool, title: "3D design", text: "We model new designs and adapt existing ones — names, initials, sizes and details — before anything is printed." },
-  { icon: Cpu, title: "3D designs", text: "Pieces are printed layer by layer in-house, which lets us reproduce fine relief, lettering and moving joints." },
+  { icon: Cpu, title: "3D designs", text: "Every piece is made in-house, which lets us reproduce fine relief, lettering and moving joints." },
   { icon: Gift, title: "Personalised gifts", text: "Name and initial keychains, NFC profile keychains and other pieces made for one person." },
   { icon: Users, title: "Bulk & wholesale", text: "Return gifts, festive sets, team and school orders, and stock for retail shops." },
 ];

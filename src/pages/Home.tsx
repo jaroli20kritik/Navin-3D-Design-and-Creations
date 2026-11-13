@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, Boxes, Download, Gift, Layers, MapPin, MessageCircle, Palette, PenTool, Ruler, Truck, Wand2,
+  ArrowRight, Boxes, Download, Gift, Layers, MapPin, MessageCircle, Palette, PenTool, Truck, Wand2,
 } from "lucide-react";
 import { site } from "../config/site";
 import { products } from "../data/products";
@@ -214,9 +214,6 @@ function Hero() {
           <div className="absolute -left-3 bottom-10 flex animate-float items-center gap-3 rounded-2xl bg-white/95 p-3 pr-4 shadow-[var(--shadow-lift)] backdrop-blur sm:-left-8">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent text-white"><Gift className="h-5 w-5" aria-hidden="true" /></span>
             <span className="text-sm leading-tight"><b className="block font-display">Personalised gifts</b><span className="text-muted">Names, initials, colours</span></span>
-          </div>
-          <div className="absolute -right-2 -top-4 flex animate-float items-center gap-2 rounded-2xl bg-ink px-3.5 py-2.5 text-white shadow-[var(--shadow-lift)] [animation-delay:1.5s] sm:-right-6">
-            <Ruler className="h-4 w-4 text-accent" aria-hidden="true" /><span className="text-xs font-semibold">Printed layer by layer</span>
           </div>
         </div>
       </div>
