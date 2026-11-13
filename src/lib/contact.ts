@@ -20,7 +20,6 @@ export const emailLink = (subject?: string, body?: string): string => {
   return `mailto:${site.contact.email}${qs ? `?${qs}` : ""}`;
 };
 
-export const productEnquiryMessage = (name: string, url?: string): string =>
+export const productEnquiryMessage = (name: string): string =>
   `Hello ${site.name}! I'm interested in the *${name}*.` +
-  (url ? `\n${url}` : "") +
   `\n\nCould you please share the price, available colours and delivery details?`;

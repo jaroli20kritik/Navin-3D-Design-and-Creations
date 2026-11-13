@@ -4,14 +4,13 @@ import type { Product } from "../data/products";
 import { categoryById } from "../data/categories";
 import { site } from "../config/site";
 import { productEnquiryMessage, whatsappLink } from "../lib/contact";
-import { pageUrl } from "../lib/utils";
 import { ProductImage } from "./ProductImage";
 import { WhatsAppIcon } from "./BrandIcons";
 
 export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   const href = `/products/${product.slug}`;
   const category = categoryById(product.categories[0]);
-  const wa = whatsappLink(productEnquiryMessage(product.name, pageUrl(href, site.url)));
+  const wa = whatsappLink(productEnquiryMessage(product.name));
 
   return (
     <article className="group card relative flex flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
