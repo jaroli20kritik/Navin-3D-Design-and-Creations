@@ -32,7 +32,7 @@ Other commands:
 
 ```
 navin3d-website/
-├── .github/workflows/deploy.yml   ← publishes to GitHub Pages on every push to main
+├── .github/workflows/deploy.yml   ← builds and publishes to GitHub Pages (gh-pages branch) on every push to main
 ├── public/                         ← files served as-is
 │   ├── catalogue/
 │   │   ├── Navin3D-Product-Catalogue.pdf   ← the downloadable catalogue
@@ -185,15 +185,14 @@ Import the repository at https://vercel.com/new. The framework, **Vite**, is det
 
 `vercel.json` makes page links work.
 
-### Option C — GitHub Pages
-This repository already includes `.github/workflows/deploy.yml`.
-1. On GitHub, go to **Settings → Pages → Source** and choose **GitHub Actions**.
-2. Push to `main`, or run the workflow from the **Actions** tab.
-3. The site goes live at `https://<your-username>.github.io/<repo-name>/`.
+### Option C — GitHub Pages (already set up for this repository)
+Every push to `main` runs `.github/workflows/deploy.yml`. It builds the site and publishes it to the `gh-pages` branch, and GitHub Pages serves that branch at
+**https://jaroli20kritik.github.io/Navin-3D-Design-and-Creations/**
 
-The workflow builds with the right sub-folder path (`BASE_PATH`) automatically, and `404.html` keeps page links working.
-
-To build for a sub-folder by hand: `BASE_PATH=/blog-break/ npm run build`.
+- To update the live site, change the files on `main` and push. It's live again about a minute later.
+- Progress shows in the **Actions** tab.
+- If Pages is ever switched off, turn it back on in **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**.
+- The repository must stay **public** for free GitHub Pages.
 
 ### After deploying
 - Set `url` in `src/config/site.ts` to the live address, then deploy again.

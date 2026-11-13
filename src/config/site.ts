@@ -14,7 +14,7 @@ export const site = {
     "Navin 3D Design and Creations makes 3D-designed idols, festive décor, planters, desk accessories, keychains and personalised gifts in Udaipur, Rajasthan. Retail, wholesale and custom orders welcome.",
 
   /** Public website address once deployed, e.g. "https://navin3d.in" (used for share links / SEO). */
-  url: "",
+  url: "https://jaroli20kritik.github.io/Navin-3D-Design-and-Creations",
 
   contact: {
     /** Shown on the site and used for the "Call" button. */
