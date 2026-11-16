@@ -20,8 +20,10 @@ export function ProductImage({ src, alt, className, imgClassName, priority, size
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(!src);
 
+  // Keep the caller's positioning (e.g. "absolute inset-0"); otherwise default to relative.
+  const positioned = /(^|\s)(absolute|fixed|sticky)(\s|$)/.test(className ?? "");
   return (
-    <div className={cn("relative overflow-hidden bg-paper-2", className)}>
+    <div className={cn(!positioned && "relative", "overflow-hidden bg-paper-2", className)}>
       {!loaded && !failed && <div className="skeleton absolute inset-0" aria-hidden="true" />}
       {failed ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 border-2 border-dashed border-line text-muted">
@@ -40,7 +42,7 @@ export function ProductImage({ src, alt, className, imgClassName, priority, size
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           className={cn(
-            "h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out",
+            "absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out",
             loaded ? "opacity-100" : "opacity-0",
             imgClassName,
           )}

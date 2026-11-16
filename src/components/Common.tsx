@@ -46,7 +46,7 @@ export function PageHeader({ eyebrow, title, description, children }: { eyebrow:
   return (
     <header className="relative overflow-hidden border-b border-line bg-white">
       <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
-      <div className="container-x relative py-10 sm:py-20">
+      <div className="container-x relative py-10 sm:py-14 xl:py-16">
         <p className="eyebrow mb-3 animate-rise">{eyebrow}</p>
         <h1 className="max-w-3xl animate-rise text-4xl font-extrabold sm:text-5xl lg:text-6xl [animation-delay:60ms]">{title}</h1>
         {description && <p className="mt-5 max-w-2xl animate-rise text-base leading-relaxed text-muted sm:text-lg [animation-delay:120ms]">{description}</p>}

@@ -53,7 +53,7 @@
 }
 
 @layer components {
-  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 2xl:max-w-[88rem]; }
   .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.16em] text-accent; }
 
   .btn {

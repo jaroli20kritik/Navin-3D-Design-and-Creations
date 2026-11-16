@@ -181,12 +181,12 @@ function Hero() {
           style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent 0 15px, rgb(23 23 26 / 0.05) 15px 16px)", maskImage: "linear-gradient(to bottom, black, transparent 85%)" }}
         />
       </div>
-      <div className="container-x grid items-center gap-12 pb-20 pt-12 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-28 lg:pt-20">
+      <div className="container-x grid grid-cols-1 items-center gap-12 pb-20 pt-12 sm:pt-16 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:pb-20 lg:pt-14 xl:gap-16 xl:pb-24 [&>*]:min-w-0">
         <div>
           <p className="inline-flex animate-rise items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-ink-2 shadow-sm">
             <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" /> 3D design studio · Udaipur, Rajasthan
           </p>
-          <h1 className="mt-6 animate-rise text-[2.6rem] font-extrabold leading-[1.02] sm:text-6xl lg:text-[4.4rem] [animation-delay:60ms]">
+          <h1 className="mt-6 animate-rise text-[2.6rem] font-extrabold leading-[1.04] sm:text-6xl lg:text-[3.4rem] xl:text-[4rem] 2xl:text-[4.4rem] [animation-delay:60ms]">
             Bring Your Ideas to Life with <span className="relative whitespace-nowrap text-accent">3D Designs</span>
           </h1>
           <p className="mt-6 max-w-xl animate-rise text-lg leading-relaxed text-muted [animation-delay:120ms]">
@@ -198,18 +198,18 @@ function Hero() {
               <Download className="h-4 w-4" aria-hidden="true" /> Download catalogue
             </a>
           </div>
-          <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-6 animate-rise [animation-delay:240ms]">
+          <dl className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-6 animate-rise [animation-delay:240ms]">
             <div><dt className="text-xs text-muted">Designs</dt><dd className="font-display text-2xl font-extrabold">{products.length}</dd></div>
             <div><dt className="text-xs text-muted">Categories</dt><dd className="font-display text-2xl font-extrabold">{categories.length}</dd></div>
             <div><dt className="text-xs text-muted">Made in</dt><dd className="font-display text-2xl font-extrabold text-accent">Udaipur</dd></div>
           </dl>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[560px] animate-rise [animation-delay:150ms]">
-          <div className="grid grid-cols-[1.25fr_1fr] gap-4">
-            <ProductImage src={heroImgs[0]} alt="Ganesha Kumkum Chawal Dibbi in ivory" priority className="row-span-2 aspect-[3/4] rounded-[2rem] shadow-[var(--shadow-lift)]" />
-            <ProductImage src={heroImgs[1]} alt="Bal Krishna flute keychain" priority className="aspect-square rounded-[1.6rem] shadow-[var(--shadow-soft)]" />
-            <ProductImage src={heroImgs[2]} alt="Flexi octopus keychain" priority className="aspect-square rounded-[1.6rem] shadow-[var(--shadow-soft)]" />
+        <div className="relative mx-auto w-full max-w-[560px] animate-rise [animation-delay:150ms] lg:max-w-[min(560px,calc(100dvh-11rem))]">
+          <div className="grid aspect-[5/4] grid-cols-[1.25fr_1fr] grid-rows-2 gap-3 sm:gap-4">
+            <ProductImage src={heroImgs[0]} alt="Ganesha Kumkum Chawal Dibbi in ivory" priority className="row-span-2 h-full rounded-[2rem] shadow-[var(--shadow-lift)]" />
+            <ProductImage src={heroImgs[1]} alt="Bal Krishna flute keychain" priority className="h-full rounded-[1.6rem] shadow-[var(--shadow-soft)]" />
+            <ProductImage src={heroImgs[2]} alt="Flexi octopus keychain" priority className="h-full rounded-[1.6rem] shadow-[var(--shadow-soft)]" />
           </div>
           <div className="absolute -left-3 bottom-10 flex animate-float items-center gap-3 rounded-2xl bg-white/95 p-3 pr-4 shadow-[var(--shadow-lift)] backdrop-blur sm:-left-8">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent text-white"><Gift className="h-5 w-5" aria-hidden="true" /></span>

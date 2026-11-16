@@ -68,6 +68,20 @@ export default function ProductDetail() {
             {!product.price && <span className="ml-2 align-middle text-sm font-medium text-muted">· retail, wholesale & bulk</span>}
           </p>
           <p className="mt-5 text-[17px] leading-relaxed text-ink-2">{product.description}</p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            {wa && (
+              <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp flex-1 py-4 text-[15px]">
+                <WhatsAppIcon size={20} /> Enquire now on WhatsApp
+              </a>
+            )}
+            {site.contact.phone && (
+              <a href={phoneLink()} className="btn btn-outline py-4"><Phone className="h-4 w-4" aria-hidden="true" /> Call</a>
+            )}
+            {mail && (
+              <a href={mail} className="btn btn-outline py-4"><Mail className="h-4 w-4" aria-hidden="true" /> Email</a>
+            )}
+          </div>
+          {url && <CopyLink url={url} />}
 
           <div className="mt-8 space-y-6 border-t border-line pt-7">
             <div>
@@ -104,20 +118,6 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            {wa && (
-              <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp flex-1 py-4 text-[15px]">
-                <WhatsAppIcon size={20} /> Enquire now on WhatsApp
-              </a>
-            )}
-            {site.contact.phone && (
-              <a href={phoneLink()} className="btn btn-outline py-4"><Phone className="h-4 w-4" aria-hidden="true" /> Call</a>
-            )}
-            {mail && (
-              <a href={mail} className="btn btn-outline py-4"><Mail className="h-4 w-4" aria-hidden="true" /> Email</a>
-            )}
-          </div>
-          {url && <CopyLink url={url} />}
         </div>
       </section>
 
@@ -145,7 +145,7 @@ function Gallery({ images, name }: { images: string[]; name: string }) {
   }, [images]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mx-auto flex w-full flex-col gap-4 lg:max-w-[min(100%,calc(100dvh-12rem))]">
       <div
         className="relative overflow-hidden rounded-[2rem] bg-white shadow-[var(--shadow-soft)] ring-1 ring-line/70"
         onKeyDown={(e) => { if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); }}

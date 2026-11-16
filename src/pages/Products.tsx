@@ -61,7 +61,7 @@ export default function Products() {
         description={activeCat ? activeCat.description : "Every design we make, with photos, details and a quick WhatsApp enquiry on each one."}
       />
 
-      <div className="border-b border-line bg-paper/90 backdrop-blur-xl sm:sticky sm:top-[72px] sm:z-30">
+      <div className="border-b border-line bg-paper">
         <div className="container-x flex flex-col gap-3 py-4">
           <div className="flex flex-col gap-3 sm:flex-row">
             <label className="relative flex-1">
