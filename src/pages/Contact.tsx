@@ -6,7 +6,7 @@ import { products } from "../data/products";
 import { PageHeader } from "../components/Common";
 import { InstagramIcon, WhatsAppIcon } from "../components/BrandIcons";
 import { SocialLinks } from "../components/SocialLinks";
-import { emailLink, phoneLink, whatsappLink } from "../lib/contact";
+import { emailLink, phoneLink, generalEnquiryMessage, whatsappLink } from "../lib/contact";
 import { usePageMeta } from "../lib/usePageMeta";
 import { pageSeo } from "../config/seo";
 import { cn } from "../lib/utils";
@@ -29,7 +29,7 @@ function validate(f: Form): Errors {
 }
 
 function compose(f: Form) {
-  const lines = [`Hello ${site.name}! I have an enquiry.`, "", `Name: ${f.name.trim()}`, `Phone: ${f.phone.trim()}`];
+  const lines = [`Hello ${site.name}! 🙏 I have an enquiry.`, "", `Name: ${f.name.trim()}`, `Phone: ${f.phone.trim()}`];
   if (f.email.trim()) lines.push(`Email: ${f.email.trim()}`);
   if (f.product) lines.push(`Interested in: ${f.product}`);
   lines.push("", f.message.trim());
@@ -69,7 +69,7 @@ export default function Contact() {
     setSent(channel);
   };
 
-  const wa = whatsappLink(`Hello ${site.name}! I have an enquiry.`);
+  const wa = whatsappLink(generalEnquiryMessage());
   const cards = [
     site.contact.phone && { icon: Phone, label: "Mobile", value: site.contact.phone, href: phoneLink(), cta: "Call now" },
     wa && { icon: WhatsAppIcon, label: "WhatsApp", value: site.contact.phone || "Chat with us", href: wa, cta: "Open chat", external: true },

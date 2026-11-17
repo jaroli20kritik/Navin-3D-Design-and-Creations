@@ -1,9 +1,8 @@
-import { site } from "../config/site";
-import { whatsappLink } from "../lib/contact";
+import { generalEnquiryMessage, whatsappLink } from "../lib/contact";
 import { WhatsAppIcon } from "./BrandIcons";
 
 export function WhatsAppFloat() {
-  const href = whatsappLink(`Hello ${site.name}! I'd like to know more about your 3D designs.`);
+  const href = whatsappLink(generalEnquiryMessage());
   if (!href) return null;
   return (
     <a

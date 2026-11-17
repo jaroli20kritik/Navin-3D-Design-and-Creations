@@ -4,7 +4,7 @@ import { ChevronRight, Download, Mail, Menu, Phone, X } from "lucide-react";
 import { Logo } from "../Logo";
 import { site } from "../../config/site";
 import { asset, cn } from "../../lib/utils";
-import { emailLink, phoneLink, whatsappLink } from "../../lib/contact";
+import { emailLink, generalEnquiryMessage, phoneLink, whatsappLink } from "../../lib/contact";
 import { WhatsAppIcon } from "../BrandIcons";
 
 export const navItems = [
@@ -19,7 +19,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-  const wa = whatsappLink(`Hello ${site.name}! I have an enquiry.`);
+  const wa = whatsappLink(generalEnquiryMessage());
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {

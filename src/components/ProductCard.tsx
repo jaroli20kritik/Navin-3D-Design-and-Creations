@@ -14,7 +14,7 @@ import { WhatsAppIcon } from "./BrandIcons";
 export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   const href = `/products/${product.slug}`;
   const category = categoryById(product.categories[0]);
-  const wa = whatsappLink(productEnquiryMessage(product.name));
+  const wa = whatsappLink(productEnquiryMessage(product.name, product.customizable));
   const colours = product.colors.length > 2 ? `${product.colors.slice(0, 2).join(", ")} +${product.colors.length - 2}` : product.colors.join(", ");
 
   return (

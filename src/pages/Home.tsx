@@ -13,16 +13,14 @@ import { CatalogueBand } from "../components/CatalogueBand";
 import { WhatsAppIcon } from "../components/BrandIcons";
 import { usePageMeta } from "../lib/usePageMeta";
 import { pageSeo } from "../config/seo";
-import { whatsappLink } from "../lib/contact";
+import { customOrderMessage, generalEnquiryMessage, whatsappLink } from "../lib/contact";
 import { asset } from "../lib/utils";
 
 const featured = products.filter((p) => p.featured).slice(0, 8);
 
 export default function Home() {
   usePageMeta(pageSeo.home.title, pageSeo.home.description);
-  const customWa = whatsappLink(
-    `Hello ${site.name}! I'd like a custom / bulk order.\n\nWhat I need:\nQuantity:\nColours:\nNeeded by:`,
-  );
+  const customWa = whatsappLink(customOrderMessage());
 
   return (
     <>
@@ -164,7 +162,7 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap gap-3">
             {whatsappLink() && (
-              <a href={whatsappLink(`Hello ${site.name}! I have an enquiry.`)} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+              <a href={whatsappLink(generalEnquiryMessage())} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
                 <WhatsAppIcon size={18} /> WhatsApp us
               </a>
             )}

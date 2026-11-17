@@ -6,7 +6,7 @@ import { ProductImage } from "../components/ProductImage";
 import { WhatsAppIcon } from "../components/BrandIcons";
 import { usePageMeta } from "../lib/usePageMeta";
 import { pageSeo } from "../config/seo";
-import { whatsappLink } from "../lib/contact";
+import { catalogueRequestMessage, whatsappLink } from "../lib/contact";
 import { asset, cn, pageUrl } from "../lib/utils";
 
 export default function Catalogue() {
@@ -15,7 +15,7 @@ export default function Catalogue() {
   const [active, setActive] = useState(0);
   const pdfUrl = pageUrl("/" + site.catalogue.file, site.url);
   const shareWa = `https://wa.me/?text=${encodeURIComponent(`${site.name} — product catalogue (PDF):\n${pdfUrl}`)}`;
-  const askWa = whatsappLink(`Hello ${site.name}! Please send me your latest product catalogue.`);
+  const askWa = whatsappLink(catalogueRequestMessage());
 
   return (
     <>

@@ -33,8 +33,8 @@ export default function ProductDetail() {
   }
 
   const url = pageUrl(`/products/${product.slug}`, site.url);
-  const wa = whatsappLink(productEnquiryMessage(product.name));
-  const mail = emailLink(`Enquiry: ${product.name}`, productEnquiryMessage(product.name).replace(/\*/g, ""));
+  const wa = whatsappLink(productEnquiryMessage(product.name, product.customizable));
+  const mail = emailLink(`Enquiry: ${product.name}`, productEnquiryMessage(product.name, product.customizable).replace(/\*/g, ""));
   const cats = product.categories.map(categoryById).filter(Boolean);
   const related = products
     .filter((p) => p.slug !== product.slug && p.categories.some((c) => product.categories.includes(c)))

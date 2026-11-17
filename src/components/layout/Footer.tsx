@@ -3,14 +3,14 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "../Logo";
 import { site } from "../../config/site";
 import { categories } from "../../data/categories";
-import { emailLink, phoneLink, whatsappLink } from "../../lib/contact";
+import { emailLink, generalEnquiryMessage, phoneLink, whatsappLink } from "../../lib/contact";
 import { asset } from "../../lib/utils";
 import { navItems } from "./Navbar";
 import { SocialLinks } from "../SocialLinks";
 import { WhatsAppIcon } from "../BrandIcons";
 
 export function Footer() {
-  const wa = whatsappLink(`Hello ${site.name}! I have an enquiry.`);
+  const wa = whatsappLink(generalEnquiryMessage());
   return (
     <footer className="bg-ink text-white/70">
       <div className="container-x grid grid-cols-2 gap-x-6 gap-y-10 py-14 sm:py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-12">
