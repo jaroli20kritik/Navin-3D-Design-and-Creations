@@ -18,10 +18,11 @@ export const navItems = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { pathname } = useLocation();
+  const { key } = useLocation();
   const wa = whatsappLink(generalEnquiryMessage());
 
-  useEffect(() => setOpen(false), [pathname]);
+  // Close the phone menu after any navigation, including a tap on the page you are already on.
+  useEffect(() => setOpen(false), [key]);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();

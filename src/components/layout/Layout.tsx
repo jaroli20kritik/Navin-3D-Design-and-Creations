@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
@@ -6,14 +6,25 @@ import { WhatsAppFloat } from "../WhatsAppFloat";
 import { ErrorBoundary, PageLoader } from "../Common";
 
 function ScrollManager() {
-  const { pathname, hash } = useLocation();
+  const { pathname, search, hash, key } = useLocation();
+  const prev = useRef({ pathname, search, key });
   useEffect(() => {
+    const last = prev.current;
+    prev.current = { pathname, search, key };
     if (hash) {
       const el = document.getElementById(decodeURIComponent(hash.slice(1)));
       if (el) { el.scrollIntoView({ behavior: "smooth" }); return; }
     }
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-  }, [pathname, hash]);
+    if (pathname !== last.pathname) {
+      // New page: start at the top.
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    } else if (key !== last.key && search === last.search) {
+      // Link to the page you're already on (e.g. the logo on the home page): glide back to the top.
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    }
+    // Only the filters/search changed (Products page): keep the scroll position.
+  }, [pathname, search, hash, key]);
   return null;
 }
 
