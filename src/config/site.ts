@@ -44,7 +44,7 @@ export const site = {
     file: "catalogue/Navin3D-Product-Catalogue.pdf",
     downloadName: "Navin3D-Product-Catalogue.pdf",
     edition: "Collection 2026 · Updated edition",
-    pages: 24,
+    pages: 26,
     sizeLabel: "about 4 MB",
     previews: [
       "catalogue/preview-1.webp",
