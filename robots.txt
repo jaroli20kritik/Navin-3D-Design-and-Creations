@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://jaroli20kritik.github.io/Navin-3D-Design-and-Creations/sitemap.xml
