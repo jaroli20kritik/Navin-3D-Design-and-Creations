@@ -5,6 +5,7 @@ import { PageHeader } from "../components/Common";
 import { ProductImage } from "../components/ProductImage";
 import { Reveal } from "../components/Reveal";
 import { usePageMeta } from "../lib/usePageMeta";
+import { pageSeo } from "../config/seo";
 
 const services = [
   { icon: PenTool, title: "3D design", text: "We model new designs and adapt existing ones — names, initials, sizes and details — before anything is printed." },
@@ -21,7 +22,7 @@ const quality = [
 ];
 
 export default function About() {
-  usePageMeta("About us", `About ${site.name}: a 3D design studio in Udaipur, Rajasthan, making idols, décor, keychains and personalised gifts.`);
+  usePageMeta(pageSeo.about.title, pageSeo.about.description);
   return (
     <>
       <PageHeader
@@ -84,11 +85,11 @@ export default function About() {
           </ul>
         </div>
         <div className="rounded-[2rem] bg-ink p-8 text-white sm:p-10">
-          <ShieldCheck className="h-8 w-8 text-accent" aria-hidden="true" />
+          <ShieldCheck className="h-8 w-8 text-gold" aria-hidden="true" />
           <h2 className="mt-5 text-3xl font-extrabold text-white">Our commitment to quality</h2>
           <ul className="mt-6 space-y-4">
             {quality.map((q) => (
-              <li key={q} className="flex gap-3 text-white/80"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />{q}</li>
+              <li key={q} className="flex gap-3 text-white/80"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />{q}</li>
             ))}
           </ul>
           <Link to="/contact" className="btn btn-accent mt-8">Talk to us <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>

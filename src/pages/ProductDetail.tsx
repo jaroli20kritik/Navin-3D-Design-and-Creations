@@ -10,12 +10,17 @@ import { EmptyState } from "../components/Common";
 import { WhatsAppIcon } from "../components/BrandIcons";
 import { emailLink, phoneLink, productEnquiryMessage, whatsappLink } from "../lib/contact";
 import { usePageMeta } from "../lib/usePageMeta";
+import { productOgImage, trimDescription } from "../config/seo";
 import { cn, pageUrl } from "../lib/utils";
 
 export default function ProductDetail() {
   const { slug = "" } = useParams();
   const product = productBySlug(slug);
-  usePageMeta(product ? product.name : "Product not found", product?.description, product?.images[0]);
+  usePageMeta(
+    product ? product.name : "Product not found",
+    product ? trimDescription(`${product.shortDescription} ${product.description}`) : undefined,
+    product ? productOgImage(product.slug) : undefined,
+  );
 
   if (!product) {
     return (
@@ -56,13 +61,13 @@ export default function ProductDetail() {
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div className="flex flex-wrap items-center gap-2">
             {cats.map((c) => (
-              <Link key={c!.id} to={`/products?category=${c!.id}`} className="rounded-full bg-ink/5 px-3 py-1 text-xs font-semibold text-ink-2 hover:bg-ink/10">{c!.name}</Link>
+              <Link key={c!.id} to={`/products?category=${c!.id}`} className="inline-flex min-h-8 items-center rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent hover:bg-accent/10">{c!.name}</Link>
             ))}
             {product.isNew && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wider text-white"><Sparkles className="h-3 w-3" aria-hidden="true" />New</span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-ink"><Sparkles className="h-3 w-3" aria-hidden="true" />New</span>
             )}
           </div>
-          <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] sm:text-5xl">{product.name}</h1>
+          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl">{product.name}</h1>
           <p className="mt-4 font-display text-2xl font-bold">
             {product.price || site.priceOnRequest}
             {!product.price && <span className="ml-2 align-middle text-sm font-medium text-muted">· retail, wholesale & bulk</span>}
@@ -85,7 +90,7 @@ export default function ProductDetail() {
 
           <div className="mt-8 space-y-6 border-t border-line pt-7">
             <div>
-              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted"><Palette className="h-4 w-4 text-accent" aria-hidden="true" />Colours</h2>
+              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted"><Palette className="h-4 w-4 text-gold-600" aria-hidden="true" />Colours</h2>
               {product.colors.length ? (
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {product.colors.map((c) => <li key={c} className="rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-medium">{c}</li>)}
@@ -96,7 +101,7 @@ export default function ProductDetail() {
             </div>
 
             <div>
-              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted"><Wand2 className="h-4 w-4 text-accent" aria-hidden="true" />Customisation</h2>
+              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted"><Wand2 className="h-4 w-4 text-gold-600" aria-hidden="true" />Customisation</h2>
               {product.customizable && product.customizationOptions.length ? (
                 <ul className="mt-3 space-y-2">
                   {product.customizationOptions.map((o) => (
@@ -109,22 +114,42 @@ export default function ProductDetail() {
             </div>
 
             <div>
-              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted"><Package className="h-4 w-4 text-accent" aria-hidden="true" />Highlights</h2>
+              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted"><Package className="h-4 w-4 text-gold-600" aria-hidden="true" />Highlights</h2>
               <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                 {product.highlights.map((h) => (
-                  <li key={h} className="flex gap-2.5 text-[15px] leading-snug"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />{h}</li>
+                  <li key={h} className="flex gap-2.5 text-[15px] leading-snug"><span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-gold" aria-hidden="true" />{h}</li>
                 ))}
               </ul>
             </div>
           </div>
 
+          <div className="mt-8 rounded-2xl border border-line bg-white p-5 sm:p-6">
+            <h2 className="font-display text-lg font-bold">How to order</h2>
+            <ol className="mt-4 space-y-3 text-[15px]">
+              {[
+                "Send an enquiry on WhatsApp, by phone or by email.",
+                product.customizable
+                  ? "Tell us the name, colours or other details you want, and the quantity."
+                  : "Tell us the quantity, and ask about colours if you'd like a change.",
+                "We confirm the price and timing, then make your order.",
+              ].map((step, k) => (
+                <li key={step} className="flex gap-3">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-accent-50 font-display text-xs font-bold text-accent">{k + 1}</span>
+                  <span className="text-ink-2">{step}</span>
+                </li>
+              ))}
+            </ol>
+            <Link to={`/contact?product=${product.slug}`} className="btn btn-outline mt-5 w-full sm:w-auto">
+              <Wand2 className="h-4 w-4" aria-hidden="true" /> {product.customizable ? "Request a custom version" : "Send a detailed enquiry"}
+            </Link>
+          </div>
         </div>
       </section>
 
       {related.length > 0 && (
         <section className="container-x border-t border-line py-16" aria-labelledby="related-h">
           <h2 id="related-h" className="mb-8 text-2xl font-extrabold sm:text-3xl">You may also like</h2>
-          <div className="grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {related.map((p) => <ProductCard key={p.slug} product={p} />)}
           </div>
         </section>

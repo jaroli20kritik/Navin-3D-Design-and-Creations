@@ -156,13 +156,33 @@ To use a different file name, change `file` and `downloadName` in `site.ts`.
 
 Brand colours and fonts are set at the top of **`src/index.css`**, under `@theme`:
 
-- `--color-accent` (orange)
-- `--color-ink` (charcoal text)
-- `--color-paper` (off-white background)
-- `--font-display` (headings, Manrope)
-- `--font-sans` (body text, DM Sans)
+- `--color-accent`: royal blue, used for buttons and links
+- `--color-gold` / `--color-gold-600`: gold for labels, badges and small details
+- `--color-ink`: deep navy text
+- `--color-paper` / `--color-paper-2`: light-grey backgrounds
+- `--font-display`: headings (Manrope)
+- `--font-sans`: body text (DM Sans)
 
 The fonts are loaded in `index.html`.
+
+---
+
+## 6b. Search engines and sharing previews
+
+- **Page titles and descriptions:** `src/config/seo.ts`.
+- **Product titles and descriptions** come from `src/data/products.ts` automatically.
+- **Build step:** `npm run build` runs `scripts/prerender.mjs` after the normal build. For every page it writes a ready-made `index.html` with:
+  - the right title, description and canonical link
+  - Open Graph and Twitter tags, which control WhatsApp, Facebook and X link previews
+  - Google structured data: Store, Product and breadcrumbs
+
+  It also writes `sitemap.xml`, `robots.txt` and `404.html`.
+- **Sharing images:** these live in `public/og/`.
+  - `navin3d-og.jpg` is the main image, 1200 × 630.
+  - `og/products/<slug>.jpg` is one per product.
+  - A new product without its own sharing image uses its first photo instead.
+  - To make a matching image, copy an existing one as a template, or ask whoever maintains the site.
+- **After the site is live:** add it to Google Search Console (https://search.google.com/search-console). Submit `https://jaroli20kritik.github.io/Navin-3D-Design-and-Creations/sitemap.xml` so Google finds every page.
 
 ---
 

@@ -6,6 +6,7 @@ import { categories, categoryById } from "../data/categories";
 import { ProductCard } from "../components/ProductCard";
 import { EmptyState, PageHeader } from "../components/Common";
 import { usePageMeta } from "../lib/usePageMeta";
+import { pageSeo } from "../config/seo";
 import { cn } from "../lib/utils";
 
 type Sort = "featured" | "new" | "az";
@@ -19,8 +20,8 @@ export default function Products() {
   const activeCat = categoryById(category);
 
   usePageMeta(
-    activeCat ? activeCat.name : "Products",
-    activeCat ? activeCat.description : "Browse 3D-designed idols, festive décor, planters, keychains, phone stands and personalised gifts. Search and filter by category.",
+    activeCat ? activeCat.name : pageSeo.products.title,
+    activeCat ? activeCat.description : pageSeo.products.description,
   );
 
   const update = (key: string, value: string) => {
@@ -121,7 +122,7 @@ export default function Products() {
           {q && <> matching “<b className="text-ink">{q}</b>”</>}
         </p>
         {results.length ? (
-          <div className={cn("grid grid-cols-1 gap-5 transition-opacity min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4", stale && "opacity-60")}>
+          <div className={cn("grid grid-cols-2 gap-3 transition-opacity sm:gap-5 lg:grid-cols-3 xl:grid-cols-4", stale && "opacity-60")}>
             {results.map((p, i) => <ProductCard key={p.slug} product={p} priority={i < 4} />)}
           </div>
         ) : (

@@ -8,6 +8,7 @@ import { InstagramIcon, WhatsAppIcon } from "../components/BrandIcons";
 import { SocialLinks } from "../components/SocialLinks";
 import { emailLink, phoneLink, whatsappLink } from "../lib/contact";
 import { usePageMeta } from "../lib/usePageMeta";
+import { pageSeo } from "../config/seo";
 import { cn } from "../lib/utils";
 import { openExternal } from "../lib/runtime";
 
@@ -36,7 +37,7 @@ function compose(f: Form) {
 }
 
 export default function Contact() {
-  usePageMeta("Contact us", `Contact ${site.name} in Udaipur for orders, prices, custom designs and bulk 3D-designed gifts. WhatsApp, phone and email.`);
+  usePageMeta(pageSeo.contact.title, pageSeo.contact.description);
   const [params] = useSearchParams();
   const preset = params.get("product");
   const [form, setForm] = useState<Form>({
@@ -95,7 +96,7 @@ export default function Contact() {
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted">{label}</p>
                 {href ? (
-                  <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="block break-words font-display text-[17px] font-bold hover:text-accent">{value}</a>
+                  <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="block break-words py-1 font-display text-[17px] font-bold hover:text-accent">{value}</a>
                 ) : (
                   <p className="break-words font-display text-[17px] font-bold">{value}</p>
                 )}

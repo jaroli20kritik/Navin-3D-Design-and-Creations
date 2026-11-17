@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { site } from "../config/site";
+import { fullTitle, siteOgImage } from "../config/seo";
 import { pageUrl } from "./utils";
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
@@ -13,25 +14,34 @@ function setMeta(attr: "name" | "property", key: string, content: string) {
   el.content = content;
 }
 
-/** Sets the page <title>, description and social-sharing tags for SEO. */
+/** Same address format the build writes: every page except home ends with "/". */
+export const canonicalPath = (pathname: string): string =>
+  pathname === "/" || pathname.endsWith("/") ? pathname : `${pathname}/`;
+
+/**
+ * Keeps the page <title>, description and sharing tags in step while visitors move
+ * between pages. (The first load already has them: see scripts/prerender.mjs.)
+ */
 export function usePageMeta(title: string, description: string = site.description, image?: string) {
   const { pathname } = useLocation();
   useEffect(() => {
-    const full = title ? `${title} | ${site.name}` : `${site.name} — ${site.tagline}`;
+    const full = fullTitle(title);
     document.title = full;
     setMeta("name", "description", description);
     setMeta("property", "og:title", full);
     setMeta("property", "og:description", description);
-    setMeta("property", "og:type", "website");
-    setMeta("property", "og:url", pageUrl(pathname, site.url));
-    const img = image || "images/products/shubh-labh-lotus-decor/1.webp";
-    setMeta("property", "og:image", pageUrl("/" + img.replace(/^\/+/, ""), site.url));
+    setMeta("name", "twitter:title", full);
+    setMeta("name", "twitter:description", description);
+    const url = pageUrl(canonicalPath(pathname), site.url);
+    if (!url) return; // claude.ai preview build: no real page address
+    setMeta("property", "og:url", url);
+    setMeta("property", "og:image", pageUrl("/" + (image || siteOgImage).replace(/^\/+/, ""), site.url));
     let canon = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canon) {
       canon = document.createElement("link");
       canon.rel = "canonical";
       document.head.appendChild(canon);
     }
-    canon.href = pageUrl(pathname, site.url);
+    canon.href = url;
   }, [title, description, image, pathname]);
 }

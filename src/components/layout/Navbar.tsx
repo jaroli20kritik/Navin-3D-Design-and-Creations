@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Download, Menu, X } from "lucide-react";
+import { ChevronRight, Download, Mail, Menu, Phone, X } from "lucide-react";
 import { Logo } from "../Logo";
 import { site } from "../../config/site";
 import { asset, cn } from "../../lib/utils";
+import { emailLink, phoneLink, whatsappLink } from "../../lib/contact";
+import { WhatsAppIcon } from "../BrandIcons";
 
 export const navItems = [
   { to: "/", label: "Home" },
@@ -17,6 +19,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+  const wa = whatsappLink(`Hello ${site.name}! I have an enquiry.`);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -36,7 +39,7 @@ export function Navbar() {
     <header
       className={cn(
         "sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300",
-        scrolled || open ? "border-line bg-paper/85 shadow-[0_8px_24px_-20px_rgb(0_0_0/0.4)] backdrop-blur-xl" : "border-transparent bg-paper/60 backdrop-blur",
+        scrolled || open ? "border-line bg-white/90 shadow-[0_8px_24px_-20px_rgb(14_26_61/0.45)] backdrop-blur-xl" : "border-transparent bg-paper/70 backdrop-blur",
       )}
     >
       <div className="container-x flex h-[72px] items-center justify-between gap-6">
@@ -49,7 +52,7 @@ export function Navbar() {
               to={item.to}
               end={item.to === "/"}
               className={({ isActive }) =>
-                cn("rounded-full px-4 py-2 text-sm font-medium transition", isActive ? "bg-ink text-white" : "text-ink-2 hover:bg-ink/5")
+                cn("relative rounded-full px-4 py-2 text-sm font-medium transition-colors", isActive ? "bg-accent-50 text-accent" : "text-ink-2 hover:bg-ink/5 hover:text-ink")
               }
             >
               {item.label}
@@ -58,9 +61,14 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={asset(site.catalogue.file)} download={site.catalogue.downloadName} className="btn btn-accent hidden px-4 py-2.5 sm:inline-flex">
+          <a href={asset(site.catalogue.file)} download={site.catalogue.downloadName} className="btn btn-outline hidden px-4 py-2.5 sm:inline-flex">
             <Download className="h-4 w-4" aria-hidden="true" /> Catalogue
           </a>
+          {wa && (
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp hidden px-4 py-2.5 lg:inline-flex">
+              <WhatsAppIcon size={16} /> Enquire
+            </a>
+          )}
           <button
             type="button"
             className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white lg:hidden"
@@ -78,7 +86,7 @@ export function Navbar() {
         id="mobile-menu"
         className={cn(
           "overflow-hidden border-t border-line bg-paper transition-[max-height,opacity] duration-300 lg:hidden",
-          open ? "max-h-[80vh] opacity-100" : "pointer-events-none max-h-0 opacity-0",
+          open ? "max-h-[calc(100dvh-72px)] overflow-y-auto opacity-100" : "pointer-events-none max-h-0 opacity-0",
         )}
       >
         <nav aria-label="Mobile" className="container-x flex flex-col py-3">
@@ -93,11 +101,30 @@ export function Navbar() {
               }
             >
               {item.label}
+              <ChevronRight className="h-5 w-5 text-muted" aria-hidden="true" />
             </NavLink>
           ))}
-          <a href={asset(site.catalogue.file)} download={site.catalogue.downloadName} tabIndex={open ? 0 : -1} className="btn btn-accent mt-5 w-full">
+          <a href={asset(site.catalogue.file)} download={site.catalogue.downloadName} tabIndex={open ? 0 : -1} className="btn btn-primary mt-5 w-full">
             <Download className="h-4 w-4" aria-hidden="true" /> Download catalogue (PDF)
           </a>
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Talk to us</p>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {wa && (
+              <a href={wa} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="btn btn-whatsapp flex-col gap-1 rounded-2xl px-2 py-3 text-xs">
+                <WhatsAppIcon size={18} /> WhatsApp
+              </a>
+            )}
+            {site.contact.phone && (
+              <a href={phoneLink()} tabIndex={open ? 0 : -1} className="btn btn-outline flex-col gap-1 rounded-2xl px-2 py-3 text-xs">
+                <Phone className="h-[18px] w-[18px]" aria-hidden="true" /> Call
+              </a>
+            )}
+            {site.contact.email && (
+              <a href={emailLink()} tabIndex={open ? 0 : -1} className="btn btn-outline flex-col gap-1 rounded-2xl px-2 py-3 text-xs">
+                <Mail className="h-[18px] w-[18px]" aria-hidden="true" /> Email
+              </a>
+            )}
+          </div>
         </nav>
       </div>
     </header>

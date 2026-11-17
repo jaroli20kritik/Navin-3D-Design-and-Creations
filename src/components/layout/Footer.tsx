@@ -13,8 +13,8 @@ export function Footer() {
   const wa = whatsappLink(`Hello ${site.name}! I have an enquiry.`);
   return (
     <footer className="bg-ink text-white/70">
-      <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-        <div className="space-y-5">
+      <div className="container-x grid grid-cols-2 gap-x-6 gap-y-10 py-14 sm:py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-12">
+        <div className="col-span-2 space-y-5 lg:col-span-1">
           <Logo light />
           <p className="max-w-sm text-sm leading-relaxed">
             3D-designed idols, festive décor, planters, desk accessories, keychains and personalised gifts — designed and printed in Udaipur.
@@ -24,37 +24,37 @@ export function Footer() {
 
         <div>
           <h2 className="mb-4 font-display text-sm font-bold text-white">Explore</h2>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="space-y-1 text-sm">
             {navItems.map((n) => (
-              <li key={n.to}><Link className="transition hover:text-accent" to={n.to}>{n.label}</Link></li>
+              <li key={n.to}><Link className="inline-block py-1 transition hover:text-white" to={n.to}>{n.label}</Link></li>
             ))}
-            <li><a className="transition hover:text-accent" href={asset(site.catalogue.file)} download={site.catalogue.downloadName}>Download catalogue</a></li>
+            <li><a className="inline-block py-1 transition hover:text-white" href={asset(site.catalogue.file)} download={site.catalogue.downloadName}>Download catalogue</a></li>
           </ul>
         </div>
 
         <div>
           <h2 className="mb-4 font-display text-sm font-bold text-white">Categories</h2>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="space-y-1 text-sm">
             {categories.map((c) => (
-              <li key={c.id}><Link className="transition hover:text-accent" to={`/products?category=${c.id}`}>{c.name}</Link></li>
+              <li key={c.id}><Link className="inline-block py-1 transition hover:text-white" to={`/products?category=${c.id}`}>{c.name}</Link></li>
             ))}
           </ul>
         </div>
 
-        <div>
+        <div className="col-span-2 sm:col-span-1 lg:col-span-1">
           <h2 className="mb-4 font-display text-sm font-bold text-white">Get in touch</h2>
-          <ul className="space-y-3.5 text-sm">
+          <ul className="space-y-1 text-sm">
             {site.contact.phone && (
-              <li><a href={phoneLink()} className="flex items-center gap-3 transition hover:text-white"><Phone className="h-4 w-4 text-accent" aria-hidden="true" />{site.contact.phone}</a></li>
+              <li><a href={phoneLink()} className="flex min-h-10 items-center gap-3 transition hover:text-white"><Phone className="h-4 w-4 text-gold" aria-hidden="true" />{site.contact.phone}</a></li>
             )}
             {wa && (
-              <li><a href={wa} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition hover:text-white"><WhatsAppIcon size={16} className="text-accent" />WhatsApp us</a></li>
+              <li><a href={wa} target="_blank" rel="noopener noreferrer" className="flex min-h-10 items-center gap-3 transition hover:text-white"><WhatsAppIcon size={16} className="text-gold" />WhatsApp us</a></li>
             )}
             {site.contact.email && (
-              <li><a href={emailLink()} className="flex items-center gap-3 break-all transition hover:text-white"><Mail className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />{site.contact.email}</a></li>
+              <li><a href={emailLink()} className="flex min-h-10 items-center gap-3 break-all transition hover:text-white"><Mail className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />{site.contact.email}</a></li>
             )}
             {site.contact.location && (
-              <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-accent" aria-hidden="true" />{site.contact.location}</li>
+              <li className="flex items-center gap-3"><MapPin className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />{site.contact.location}</li>
             )}
           </ul>
         </div>

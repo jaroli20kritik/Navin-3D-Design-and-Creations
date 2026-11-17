@@ -5,11 +5,12 @@ import { PageHeader } from "../components/Common";
 import { ProductImage } from "../components/ProductImage";
 import { WhatsAppIcon } from "../components/BrandIcons";
 import { usePageMeta } from "../lib/usePageMeta";
+import { pageSeo } from "../config/seo";
 import { whatsappLink } from "../lib/contact";
 import { asset, cn, pageUrl } from "../lib/utils";
 
 export default function Catalogue() {
-  usePageMeta("Product catalogue (PDF)", `Download the ${site.name} product catalogue — ${site.catalogue.pages} pages of 3D-designed products with photos and highlights.`);
+  usePageMeta(pageSeo.catalogue.title, pageSeo.catalogue.description);
   const pdf = asset(site.catalogue.file);
   const [active, setActive] = useState(0);
   const pdfUrl = pageUrl("/" + site.catalogue.file, site.url);
@@ -36,7 +37,7 @@ export default function Catalogue() {
       <section className="container-x grid grid-cols-1 gap-12 py-16 [&>*]:min-w-0 lg:grid-cols-[1fr_1.1fr] lg:items-start">
         <div className="mx-auto w-full max-w-md">
           <div className="relative">
-            <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl bg-accent/20" aria-hidden="true" />
+            <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl bg-gold/25" aria-hidden="true" />
             <a href={pdf} target="_blank" rel="noopener noreferrer" className="relative block overflow-hidden rounded-2xl shadow-[var(--shadow-lift)] ring-1 ring-line" aria-label="Open the catalogue PDF">
               <ProductImage key={active} src={site.catalogue.previews[active]} alt={`Catalogue page ${active + 1} preview`} priority className="aspect-[210/297]" />
             </a>
