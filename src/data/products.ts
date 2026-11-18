@@ -136,6 +136,27 @@ export const products: Product[] = [
     featured: true,
   },
   {
+    slug: "ganesha-idol",
+    name: "Ganesha Idol",
+    categories: ["home-decor", "festival"],
+    shortDescription: "Seated Ganesha in ivory with lotuses and modak.",
+    description:
+      "A seated Ganesha idol in an ivory finish, holding lotuses and a modak with one hand raised in blessing. Fine detail on the crown, jewellery and dhoti makes it a graceful centrepiece for home mandirs, pujas and festive gifting.",
+    highlights: [
+      "Seated Ganesha holding lotuses and a modak",
+      "Blessing hand and finely detailed crown and jewellery",
+      "Elegant ivory finish",
+      "Ideal for home mandirs, Ganesh Chaturthi and gifting",
+    ],
+    images: photos("ganesha-idol", 2),
+    price: "",
+    colors: ["Ivory"],
+    customizable: false,
+    customizationOptions: [],
+    featured: true,
+    isNew: true,
+  },
+  {
     slug: "ganesha-keychain",
     name: "Ganesha Keychain",
     categories: ["keychains", "festival"],
