@@ -510,7 +510,7 @@ export const products: Product[] = [
       "Stands on a curved base",
       "A gift for anime fans and collectors",
     ],
-    images: photos("satoru-gojo-figure", 3),
+    images: photos("satoru-gojo-figure", 2),
     price: "",
     colors: ["White", "Full colour (purple, white & black)"],
     customizable: false,
