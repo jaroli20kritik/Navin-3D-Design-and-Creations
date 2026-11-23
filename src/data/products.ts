@@ -519,6 +519,27 @@ export const products: Product[] = [
     isNew: true,
   },
   {
+    slug: "gear-fidget-toy",
+    name: "Gear Fidget Toy",
+    categories: ["desk"],
+    shortDescription: "Three meshing spiral gears that turn together in one frame.",
+    description:
+      "A satisfying desk fidget with three spiral gears held in a white frame. Turn one gear and the others spin with it. A calming, tactile toy for desks, study tables and anyone who likes to keep their hands busy.",
+    highlights: [
+      "Three meshing spiral gears turn together",
+      "Smooth, satisfying motion",
+      "Two-colour orange and white design",
+      "A fun desk toy for kids and adults",
+    ],
+    images: photos("gear-fidget-toy", 2),
+    price: "",
+    colors: ["Orange & white"],
+    customizable: false,
+    customizationOptions: [],
+    featured: true,
+    isNew: true,
+  },
+  {
     slug: "adjustable-desk-phone-stand",
     name: "Adjustable Desk Phone Stand",
     categories: ["desk", "mobile"],
